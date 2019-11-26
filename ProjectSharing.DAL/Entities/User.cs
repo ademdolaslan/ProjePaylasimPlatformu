@@ -32,5 +32,6 @@ namespace ProjectSharing.DAL.Entities
 
         public ICollection<Page> Pages { get; set; }
         public ICollection<Comment> Comment { get; set; }
+        public ICollection<File> File { get; set; }
     }
 }

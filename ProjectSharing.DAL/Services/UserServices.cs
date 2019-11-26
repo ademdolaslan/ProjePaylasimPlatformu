@@ -26,37 +26,59 @@ namespace ProjectSharing.DAL.Services
         {
             return db.Users.FirstOrDefault(x => x.Email==_email);
         }
-        public User AddNewUser(User _user)
+        public int AddNewUser(User _user)
         {
-            var addedUser = db.Users.Add(_user);
-            db.SaveChanges();
-            return addedUser.Entity;
+            try
+            {
+                var addedUser = db.Users.Add(_user);
+                var affectedRows=db.SaveChanges();
+                return affectedRows;
+            }
+            catch (Exception)
+            {
+                return -1;                
+            }           
         }
-        public User UpdateUser(User _user)
+        public int UpdateUser(User _user)
         {
-            var updatedUser = db.Users.FirstOrDefault(x => x.UserID == _user.UserID);
-            updatedUser.UserName = _user.UserName;
-            updatedUser.Password = _user.Password;
-            updatedUser.FirstName = _user.FirstName;
-            updatedUser.LastName = _user.LastName;
-            updatedUser.Email = _user.Email;
-            updatedUser.Picture = _user.Picture;
-            updatedUser.Tel = _user.Tel;
-            updatedUser.Country = _user.Country;
-            updatedUser.City = _user.City;
-            updatedUser.Region = _user.Region;
-            updatedUser.Address = _user.Address;
-            updatedUser.IsBanned = _user.IsBanned;
-            updatedUser.UserType = _user.UserType;
-            db.SaveChanges();
-            return updatedUser;
+            try
+            {
+                var updatedUser = db.Users.FirstOrDefault(x => x.UserID == _user.UserID);
+                updatedUser.UserName = _user.UserName;
+                updatedUser.Password = _user.Password;
+                updatedUser.FirstName = _user.FirstName;
+                updatedUser.LastName = _user.LastName;
+                updatedUser.Email = _user.Email;
+                updatedUser.Picture = _user.Picture;
+                updatedUser.Tel = _user.Tel;
+                updatedUser.Country = _user.Country;
+                updatedUser.City = _user.City;
+                updatedUser.Region = _user.Region;
+                updatedUser.Address = _user.Address;                
+                updatedUser.UserType = _user.UserType;
+                var affectedRows = db.SaveChanges();
+                return affectedRows;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
         }
-        public User DeleteUser(User _user)
+        public int DeleteUser(User _user)
         {
-            var deletedUser = db.Users.FirstOrDefault(x => x.UserID == _user.UserID);
-            deletedUser.IsBanned = true;
-            db.SaveChanges();
-            return deletedUser;
+            try
+            {
+                var deletedUser = db.Users.FirstOrDefault(x => x.UserID == _user.UserID);
+                deletedUser.IsBanned = true;
+                var affectedRows = db.SaveChanges();
+                return affectedRows;
+            }
+            catch (Exception)
+            {
+                return -1;
+                throw;
+            }            
         }
     }
 }

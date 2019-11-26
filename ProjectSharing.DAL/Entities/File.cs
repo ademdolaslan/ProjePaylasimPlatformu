@@ -12,6 +12,7 @@ namespace ProjectSharing.DAL.Entities
         public int FileID { get; set; }
         public string FileName { get; set; }
         public int PageID { get; set; }
+        public string UserID { get; set; }
         public string FileVersion { get; set; }
         public string FilePath { get; set; }
         public string FileType { get; set; }
@@ -19,5 +20,8 @@ namespace ProjectSharing.DAL.Entities
 
         [ForeignKey("PageID")]
         public Page Page { get; set; }
+
+        [ForeignKey("UserID")]
+        public User User { get; set; }
     }
 }
