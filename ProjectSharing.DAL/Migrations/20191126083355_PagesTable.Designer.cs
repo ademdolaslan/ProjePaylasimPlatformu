@@ -3,77 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectSharing.DAL.DataContext;
 
 namespace ProjectSharing.DAL.Migrations
 {
     [DbContext(typeof(ProjectSharingDbContext))]
-    partial class ProjectSharingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191126083355_PagesTable")]
+    partial class PagesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ProjectSharing.DAL.Entities.Comment", b =>
-                {
-                    b.Property<int>("CommentID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CommentParentID");
-
-                    b.Property<string>("CommentText");
-
-                    b.Property<string>("CommentTitle");
-
-                    b.Property<bool>("IsVerified");
-
-                    b.Property<int>("PageID");
-
-                    b.Property<int>("Rating");
-
-                    b.Property<string>("UserID");
-
-                    b.HasKey("CommentID");
-
-                    b.HasIndex("CommentParentID");
-
-                    b.HasIndex("PageID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("ProjectSharing.DAL.Entities.File", b =>
-                {
-                    b.Property<int>("FileID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FileName");
-
-                    b.Property<string>("FilePath");
-
-                    b.Property<string>("FileSize");
-
-                    b.Property<string>("FileType");
-
-                    b.Property<string>("FileVersion");
-
-                    b.Property<int>("PageID");
-
-                    b.HasKey("FileID");
-
-                    b.HasIndex("PageID");
-
-                    b.ToTable("Files");
-                });
 
             modelBuilder.Entity("ProjectSharing.DAL.Entities.Page", b =>
                 {
@@ -145,30 +91,6 @@ namespace ProjectSharing.DAL.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ProjectSharing.DAL.Entities.Comment", b =>
-                {
-                    b.HasOne("ProjectSharing.DAL.Entities.Comment", "ParentComment")
-                        .WithMany()
-                        .HasForeignKey("CommentParentID");
-
-                    b.HasOne("ProjectSharing.DAL.Entities.Page", "Page")
-                        .WithMany("Comment")
-                        .HasForeignKey("PageID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjectSharing.DAL.Entities.User", "User")
-                        .WithMany("Comment")
-                        .HasForeignKey("UserID");
-                });
-
-            modelBuilder.Entity("ProjectSharing.DAL.Entities.File", b =>
-                {
-                    b.HasOne("ProjectSharing.DAL.Entities.Page", "Page")
-                        .WithMany("File")
-                        .HasForeignKey("PageID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ProjectSharing.DAL.Entities.Page", b =>

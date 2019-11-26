@@ -28,7 +28,14 @@ namespace ProjectSharing.DAL.DataContext
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Page>().HasIndex(b => b.PageUrl).IsUnique();
+        }
         //dbsetler buraya gelecek
         public DbSet<User> Users { get; set; }
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<File> Files { get; set; }
     }
 }

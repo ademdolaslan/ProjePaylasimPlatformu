@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectSharing.DAL.DataContext;
 
 namespace ProjectSharing.DAL.Migrations
 {
     [DbContext(typeof(ProjectSharingDbContext))]
-    partial class ProjectSharingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191126095640_CommentFirst")]
+    partial class CommentFirst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +27,7 @@ namespace ProjectSharing.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommentParentID");
+                    b.Property<int>("CommentParentID");
 
                     b.Property<string>("CommentText");
 
@@ -42,10 +44,6 @@ namespace ProjectSharing.DAL.Migrations
                     b.HasKey("CommentID");
 
                     b.HasIndex("CommentParentID");
-
-                    b.HasIndex("PageID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -72,7 +70,7 @@ namespace ProjectSharing.DAL.Migrations
 
                     b.HasIndex("PageID");
 
-                    b.ToTable("Files");
+                    b.ToTable("File");
                 });
 
             modelBuilder.Entity("ProjectSharing.DAL.Entities.Page", b =>
@@ -151,16 +149,8 @@ namespace ProjectSharing.DAL.Migrations
                 {
                     b.HasOne("ProjectSharing.DAL.Entities.Comment", "ParentComment")
                         .WithMany()
-                        .HasForeignKey("CommentParentID");
-
-                    b.HasOne("ProjectSharing.DAL.Entities.Page", "Page")
-                        .WithMany("Comment")
-                        .HasForeignKey("PageID")
+                        .HasForeignKey("CommentParentID")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjectSharing.DAL.Entities.User", "User")
-                        .WithMany("Comment")
-                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("ProjectSharing.DAL.Entities.File", b =>

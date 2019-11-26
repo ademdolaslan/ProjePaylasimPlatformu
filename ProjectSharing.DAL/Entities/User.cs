@@ -29,5 +29,8 @@ namespace ProjectSharing.DAL.Entities
         public bool IsBanned { get; set; }
         public string UserType { get; set; }
 
+
+        public ICollection<Page> Pages { get; set; }
+        public ICollection<Comment> Comment { get; set; }
     }
 }
