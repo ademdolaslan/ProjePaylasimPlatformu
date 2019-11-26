@@ -20,7 +20,6 @@ namespace ProjectSharing.DAL.Entities
         public string LastName { get; set; }
         [Required]
         public string Email { get; set; }
-
         public byte[] Picture { get; set; }        
         public string Tel { get; set; }
         public string Country { get; set; }
