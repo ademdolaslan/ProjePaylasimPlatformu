@@ -16,4 +16,8 @@
     <PackageReference Include="System.IO" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectSharing.DAL\ProjectSharing.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
