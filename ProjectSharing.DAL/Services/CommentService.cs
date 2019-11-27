@@ -50,10 +50,13 @@ namespace ProjectSharing.DAL.Services
         {
             try
             {
-
                 var deletedComment = db.Comments.FirstOrDefault(x => x.CommentID == commentID);
-                db.Comments.Remove(deletedComment);
-                //foreach delete sub comments
+                var deletedSubComments = db.Comments.Where(x => x.CommentParentID == commentID).ToList();
+                foreach (var item in deletedSubComments)
+                {
+                    db.Comments.Remove(item);
+                }
+                db.Comments.Remove(deletedComment);                
                 var affectedRows = db.SaveChanges();
                 return affectedRows;
             }
