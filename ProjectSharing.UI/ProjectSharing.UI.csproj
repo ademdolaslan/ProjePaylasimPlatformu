@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjectSharing.BLL\ProjectSharing.BLL.csproj" />
+    <ProjectReference Include="..\ProjectSharing.DAL\ProjectSharing.DAL.csproj" />
   </ItemGroup>
 
 </Project>
