@@ -1,0 +1,8 @@
+﻿@using ProjectSharing.BLL
+@{
+    var _c = new CategoryBLL().PageCountByCategory().OrderByDescending(x=>x.Count);
+    foreach (var item in _c)
+    {
+        <li><a asp-action="ViewCategory" asp-controller="Category" asp-route-id="@item.Category.CategoryID">@item.Category.CategoryName <span>(@item.Count)</span></a></li>        
+    }
+}

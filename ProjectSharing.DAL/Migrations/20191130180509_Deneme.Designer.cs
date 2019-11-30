@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectSharing.DAL.DataContext;
 
 namespace ProjectSharing.DAL.Migrations
 {
     [DbContext(typeof(ProjectSharingDbContext))]
-    partial class ProjectSharingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191130180509_Deneme")]
+    partial class Deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

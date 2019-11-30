@@ -1,7 +1,7 @@
 ﻿@using ProjectSharing.BLL.Models
 @model List<PageInfo>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,14 +11,14 @@
     {
         <div class="col-md-12">
             <div class="blog-entry ftco-animate d-md-flex">
-                <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" class="img img-2" style="background-image: url(images/image_@(rnd.Next(1, 12);).jpg);"></a>
+                <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" class="img img-2" style="background-image: url(images/image_@(rnd.Next(1, 12)).jpg);"></a>
                 <div class="text text-2 pl-md-4">
                     <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.Page.PageID">@item.Page.PageTitle</a></h3>
                     <div class="meta-wrap">
                         <p class="meta">
-                            <span>@item.Page.CreateDate.Date</span>
-                            <span><a href="single.html">@item.Category.CategoryName</a></span>
-                            <span>@(item.Page.PageViewCount) View</span>
+                            <span>@item.Page.CreateDate.Date.ToShortDateString()</span>
+                            <span><a>@item.Category.CategoryName</a></span>
+                            <span>@item.Page.PageViewCount View</span>
                         </p>
                     </div>
                     <p class="mb-4">@item.Page.PageDescription</p>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-    }
+    };
 }
 
 
