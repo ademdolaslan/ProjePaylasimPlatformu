@@ -37,5 +37,6 @@ namespace ProjectSharing.DAL.DataContext
         public DbSet<Page> Pages { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -1,5 +1,7 @@
-﻿using ProjectSharing.DAL.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectSharing.DAL.DataContext;
 using ProjectSharing.DAL.Entities;
+using ProjectSharing.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,5 +65,16 @@ namespace ProjectSharing.DAL.Services
                 
             }           
         }        
+        public List<PageCountByCategory> PageCountByCategory()
+        {
+            List<PageCountByCategory> lst = new List<PageCountByCategory>();
+            var categories = db.Categories.ToList();
+            foreach (var _category in categories)
+            {
+                var _count = db.Pages.Count(x => x.PageCategoryID == _category.CategoryID);
+                lst.Add(new PageCountByCategory() { Category = _category, Count = _count });
+            }
+            return lst;
+        }
     }
 }
