@@ -1,8 +1,10 @@
-﻿using ProjectSharing.DAL.Entities;
-using ProjectSharing.DAL.Models;
+﻿using ProjectSharing.BLL.Models;
+using ProjectSharing.DAL.Entities;
+
 using ProjectSharing.DAL.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectSharing.BLL
@@ -14,9 +16,20 @@ namespace ProjectSharing.BLL
         {
             return service.GetCategories();
         }
-        public List<PageCountByCategory> PageCountByCategory()
+        public List<PageCountByCategory> PagesCountByCategory()
         {
-            return new PageService().PageCountByCategory();
+            List<PageCountByCategory> list = new List<PageCountByCategory>();
+            var pages = new PageBLL().GetAllPages();
+            var categories = service.GetCategories();
+            foreach (var category in categories)
+            {
+                list.Add(new PageCountByCategory()
+                {
+                    Category = category,
+                    Count = pages.Count(x => x.PageCategoryID == category.CategoryID)
+                });
+            }
+            return list;
         }
     }
 }

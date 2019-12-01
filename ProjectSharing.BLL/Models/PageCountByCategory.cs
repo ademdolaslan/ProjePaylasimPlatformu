@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectSharing.DAL.Models
+namespace ProjectSharing.BLL.Models
 {
     public class PageCountByCategory
     {

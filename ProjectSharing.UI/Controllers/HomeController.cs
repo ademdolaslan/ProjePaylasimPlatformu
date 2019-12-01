@@ -14,7 +14,7 @@ namespace ProjectSharing.UI.Controllers
         private readonly PageBLL pageBLL = new PageBLL();
         public IActionResult Index()
         {
-            var _model = pageBLL.PagesWithFullDescription();
+            var _model = pageBLL.GetAllPages();
             return View(_model);
         }     
     }

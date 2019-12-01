@@ -1,5 +1,5 @@
-﻿@using ProjectSharing.BLL.Models
-@model List<PageInfo>
+﻿@using ProjectSharing.DAL.Entities
+@model List<Page>
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,16 +13,16 @@
             <div class="blog-entry ftco-animate d-md-flex">
                 <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" class="img img-2" style="background-image: url(images/image_@(rnd.Next(1, 12)).jpg);"></a>
                 <div class="text text-2 pl-md-4">
-                    <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.Page.PageID">@item.Page.PageTitle</a></h3>
+                    <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.PageID">@item.PageTitle</a></h3>
                     <div class="meta-wrap">
                         <p class="meta">
-                            <span>@item.Page.CreateDate.Date.ToShortDateString()</span>
+                            <span>@item.CreateDate.Date.ToShortDateString()</span>
                             <span><a>@item.Category.CategoryName</a></span>
-                            <span>@item.Page.PageViewCount View</span>
+                            <span>@item.PageViewCount View</span>
                         </p>
                     </div>
-                    <p class="mb-4">@item.Page.PageDescription</p>
-                    <p><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.Page.PageID" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                    <p class="mb-4">@item.PageDescription</p>
+                    <p><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.PageID" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
                 </div>
             </div>
         </div>

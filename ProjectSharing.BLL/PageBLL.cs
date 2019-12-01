@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ProjectSharing.BLL.Models;
 using ProjectSharing.DAL.Entities;
-using ProjectSharing.DAL.Models;
 using ProjectSharing.DAL.Services;
 
 namespace ProjectSharing.BLL
@@ -78,27 +76,6 @@ namespace ProjectSharing.BLL
             {
                 return service.DeletePage(deletedPage.PageID);
             }
-        }
-        public List<PageCountByCategory> PageCountByCategories()
-        {
-            return service.PageCountByCategory();
-        }
-        public List<PageInfo> PagesWithFullDescription()
-        {
-            List<PageInfo> pages = new List<PageInfo>();
-            var _pages =service.GetAllPages();
-            var _users = new UserBLL().GetAllUsers();
-            var _categories = new CategoryBLL().GetCategories();
-            foreach (var item in _pages)
-            {
-                pages.Add(new PageInfo() {
-                Page=item,
-                Category=_categories.FirstOrDefault(x=>x.CategoryID==item.PageCategoryID),
-                User=_users.FirstOrDefault(x=>x.UserID==item.UserID)      
-                });
-            }
-            return pages;
-            
-        }
+        }                
     }
 }
