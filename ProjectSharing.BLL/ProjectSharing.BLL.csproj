@@ -20,4 +20,11 @@
     <ProjectReference Include="..\ProjectSharing.DAL\ProjectSharing.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CommentOperations\" />
+    <Folder Include="FileOperations\" />
+    <Folder Include="UserOperations\" />
+    <Folder Include="PageOperations\" />
+  </ItemGroup>
+
 </Project>

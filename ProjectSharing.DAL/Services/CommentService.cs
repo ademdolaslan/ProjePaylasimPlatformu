@@ -63,7 +63,6 @@ namespace ProjectSharing.DAL.Services
             catch (Exception)
             {
                 return -1;
-                throw;
             }
         }
     }
