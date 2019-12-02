@@ -16,11 +16,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
     <PackageReference Include="System.IO" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProjectSharing.BLL\ProjectSharing.BLL.csproj" />
+    <ProjectReference Include="..\ProjectSharing.DAL\ProjectSharing.DAL.csproj" />
   </ItemGroup>
 
 </Project>

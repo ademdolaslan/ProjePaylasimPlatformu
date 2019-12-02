@@ -1,74 +1,151 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProjectSharing.UI</title>
+    <title>@ViewData["Title"] - Project Sahring</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ProjectSharing.UI</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        <aside id="colorlib-aside" role="complementary" class="js-fullheight">
+            <nav id="colorlib-main-menu" role="navigation">
+                <ul>
+                    <li class="colorlib-active"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li><a asp-action="Share" asp-controller="Project">Share Project</a></li>
+                    <li><a asp-action="MyProfile" asp-controller="Profile">My Profile</a></li>
+                    <li><a asp-action="Index" asp-controller="About">About</a></li>
+                    <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
+                    <li><a>Sign In or Sign Up</a></li>
                 </ul>
+            </nav>
+            <div class="colorlib-footer">
+                <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image: url(images/bg_1.jpg);">Adem <span>Dölaslan</span></a></h1>
+                <div class="mb-4">
+                    <h3>Have a project? Share us!</h3>                    
+                </div>
+                <p class="pfooter">
+                    <ul class="nav">
+                        <li class="nav-link">
+                            <a href="https://www.facebook.com/adem.dolaslan">
+                                <img src="~/images/icons/facebook.svg" width="30px" />
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="https://twitter.com/SayinDolaslan">
+                                <img src="~/images/icons/twitter.svg" width="30px" />
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="https://www.instagram.com/sayindolaslan">
+                                <img src="~/images/icons/instagram.svg" width="30px" />
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="https://www.linkedin.com/in/ademdolaslan/">
+                                <img src="~/images/icons/linkedin.svg" width="30px" />
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="https://github.com/ademdolaslan">
+                                <img src="~/images/icons/github.svg" width="30px" />
+                            </a>
+                        </li>
+                    </ul>
+                </p>
             </div>
+        </aside>
+        <div id="colorlib-main">
+            <section class="ftco-section ftco-no-pt ftco-no-pb">
+                <div class="container">
+                    <div class="row d-flex">                        
+                        <div class="col-xl-8 py-5 px-md-5">@RenderBody()</div>
+                        <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+                            <div class="sidebar-box pt-md-4">
+                                <form action="#" class="search-form">
+                                    <div class="form-group">
+                                        <span class="icon icon-search"></span>
+                                        <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="sidebar-box ftco-animate">
+                                <h3 class="sidebar-heading">Categories</h3>
+                                <ul class="categories">                                 
+                                    <partial name="_Categories"/>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box ftco-animate">
+                                <h3 class="sidebar-heading">Popular Articles</h3>
+                                <partial name="_Popular" />                                
+                            </div>
+                            <div class="sidebar-box ftco-animate">
+                                <h3 class="sidebar-heading">Tag Cloud</h3>
+                                <ul class="tagcloud">
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="MVC" class="tag-cloud-link">MVC</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="C#" class="tag-cloud-link">C#</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="JAVA" class="tag-cloud-link">JAVA</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="PYTHON" class="tag-cloud-link">PYTHON</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="OOP" class="tag-cloud-link">OOP</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="SOA" class="tag-cloud-link">SOA</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="API" class="tag-cloud-link">API</a>
+                                    <a asp-action="Tag" asp-controller="Home" asp-route-id="WCF" class="tag-cloud-link">WCF</a>
+                                </ul>
+                            </div>                           
+                            <div class="sidebar-box ftco-animate">
+                                <h3 class="sidebar-heading">Archives</h3>
+                                <ul class="categories">
+                                    <li><a href="#">October 2018 <span>(10)</span></a></li>
+                                    <li><a href="#">September 2018 <span>(6)</span></a></li>
+                                    <li><a href="#">August 2018 <span>(8)</span></a></li>
+                                    <li><a href="#">July 2018 <span>(2)</span></a></li>
+                                    <li><a href="#">June 2018 <span>(7)</span></a></li>
+                                    <li><a href="#">May 2018 <span>(5)</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box ftco-animate">
+                                <h3 class="sidebar-heading">Adem DÖLASLAN</h3>
+                                <p>
+                                    Bilecik Şeyh Edebali Üniversitesi Bilgisayar Mühendisliği bölümünden mezun, yazılım geliştirmede istekli, takım çalışmasına adapte olabilenKarşılaştığı sorunları çözmede azimli, yeni teknolojileri öğrenmede istekli, kendine yeni bilgiler katmayı seven bilgisayar mühendisi. Yazılım Geliştirici (ASP.Net, ASP.Net MVC, .Net Core), Veritabanı Programcısı (MSSql, MySql , Oracle - PL/SQL).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </nav>
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - ProjectSharing.UI</p>
-        </footer>
     </div>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

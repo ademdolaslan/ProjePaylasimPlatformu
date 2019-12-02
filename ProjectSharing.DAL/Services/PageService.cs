@@ -1,5 +1,7 @@
-﻿using ProjectSharing.DAL.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectSharing.DAL.DataContext;
 using ProjectSharing.DAL.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,11 @@ namespace ProjectSharing.DAL.Services
         private readonly ProjectSharingDbContext db = new ProjectSharingDbContext(ProjectSharingDbContext.ops.dbOptions);
         public List<Page> GetAllPages()
         {
-            return db.Pages.Where(x => x.IsVerified == true).ToList();
+            return db.Pages.Include(x=>x.Category).Include(x=>x.User).Where(x => x.IsVerified == true).ToList();
         }
         public Page GetPageByURL(string _pageURL)
         {
-            return db.Pages.FirstOrDefault(x => x.PageUrl == _pageURL);
+            return db.Pages.Include(x => x.Category).Include(x => x.User).FirstOrDefault(x => x.PageUrl == _pageURL);
         }
         public int AddNewPage(Page _page)
         {
@@ -62,6 +64,6 @@ namespace ProjectSharing.DAL.Services
                 return -1;
                 
             }           
-        }
+        }                
     }
 }

@@ -19,6 +19,21 @@ namespace ProjectSharing.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ProjectSharing.DAL.Entities.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryDescription");
+
+                    b.Property<string>("CategoryName");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("ProjectSharing.DAL.Entities.Comment", b =>
                 {
                     b.Property<int>("CommentID")
@@ -85,9 +100,15 @@ namespace ProjectSharing.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreateDate");
+
                     b.Property<bool>("IsVerified");
 
+                    b.Property<int>("PageCategoryID");
+
                     b.Property<string>("PageContent");
+
+                    b.Property<string>("PageDescription");
 
                     b.Property<string>("PageTags");
 
@@ -100,6 +121,8 @@ namespace ProjectSharing.DAL.Migrations
                     b.Property<string>("UserID");
 
                     b.HasKey("PageID");
+
+                    b.HasIndex("PageCategoryID");
 
                     b.HasIndex("PageUrl")
                         .IsUnique()
@@ -181,6 +204,11 @@ namespace ProjectSharing.DAL.Migrations
 
             modelBuilder.Entity("ProjectSharing.DAL.Entities.Page", b =>
                 {
+                    b.HasOne("ProjectSharing.DAL.Entities.Category", "Category")
+                        .WithMany("Page")
+                        .HasForeignKey("PageCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("ProjectSharing.DAL.Entities.User", "User")
                         .WithMany("Pages")
                         .HasForeignKey("UserID");
