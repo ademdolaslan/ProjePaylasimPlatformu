@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommentOperations\**" />
+    <Compile Remove="FileOperations\**" />
+    <Compile Remove="PageOperations\**" />
+    <Compile Remove="UserOperations\**" />
+    <EmbeddedResource Remove="CommentOperations\**" />
+    <EmbeddedResource Remove="FileOperations\**" />
+    <EmbeddedResource Remove="PageOperations\**" />
+    <EmbeddedResource Remove="UserOperations\**" />
+    <None Remove="CommentOperations\**" />
+    <None Remove="FileOperations\**" />
+    <None Remove="PageOperations\**" />
+    <None Remove="UserOperations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
@@ -21,13 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjectSharing.DAL\ProjectSharing.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CommentOperations\" />
-    <Folder Include="FileOperations\" />
-    <Folder Include="UserOperations\" />
-    <Folder Include="PageOperations\" />
   </ItemGroup>
 
 </Project>
