@@ -11,7 +11,7 @@
     {
         <div class="col-md-12">
             <div class="blog-entry ftco-animate d-md-flex">
-                <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" class="img img-2" style="background-image: url(images/image_@(rnd.Next(1, 12)).jpg);"></a>
+                <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" ><img class="img img-2" src="@Url.Action("FileContent","Home",new { id=item.User.UserID})" /></a>
                 <div class="text text-2 pl-md-4">
                     <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.PageID">@item.PageTitle</a></h3>
                     <div class="meta-wrap">

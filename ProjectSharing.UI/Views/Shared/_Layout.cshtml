@@ -7,18 +7,18 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <link rel="stylesheet" href="~/css/style.css">
 
 </head>
 <body>
@@ -29,14 +29,24 @@
                 <ul>
                     <li class="colorlib-active"><a asp-action="Index" asp-controller="Home">Home</a></li>
                     <li><a asp-action="Share" asp-controller="Project">Share Project</a></li>
-                    <li><a asp-action="MyProfile" asp-controller="Profile">My Profile</a></li>
                     <li><a asp-action="Index" asp-controller="About">About</a></li>
                     <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
-                    <li><a>Sign In or Sign Up</a></li>
+                    <li>@{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <a>@User.FindFirst(c=>c.Type==System.Security.Claims.ClaimTypes.Name)?.Value</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Login" asp-controller="Account" style="display:inline-block;">Sign Up</a> 
+                            <p style="display:inline-block;">or</p> 
+                            <a asp-action="Register" asp-controller="Account" style="display:inline-block;">Register</a>
+                        }
+                    }</li>
                 </ul>
             </nav>
             <div class="colorlib-footer">
-                <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image: url(images/bg_1.jpg);">Adem <span>Dölaslan</span></a></h1>
+                <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image: url(images/bg_1.jpg);">Project <span>Share</span></a></h1>
                 <div class="mb-4">
                     <h3>Have a project? Share us!</h3>                    
                 </div>
@@ -131,21 +141,23 @@
             </section>
         </div>
     </div>
+    <></>
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/aos.js"></script>
+    <script src="~/js/jquery.animateNumber.min.js"></script>
+    <script src="~/js/scrollax.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
+    <script src="~/js/google-map.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts",required:false)
 </body>
 </html>
