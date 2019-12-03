@@ -52,7 +52,7 @@ namespace ProjectSharing.UI
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "areas",
-                    template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+                    template: "{area=Admin}/{controller=Dashboard}/{action=Index}/{id?}");
 
             });
         }

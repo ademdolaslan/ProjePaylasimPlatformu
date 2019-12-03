@@ -6,15 +6,13 @@ using ProjectSharing.DAL.Services;
 using System.Drawing;
 using System.IO;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Web.Mvc;
+
 
 namespace ProjectSharing.BLL
 {
     public class UserBLL
     {
         readonly UserServices services = new UserServices();
-        [OutputCache(Duration =10)]
         public List<User> GetAllUsers()
         {
             return services.GetAllUsers();
@@ -41,7 +39,7 @@ namespace ProjectSharing.BLL
             {
                 user.UserID = user.FirstName.Substring(0, 3).ToUpper() + user.LastName.Substring(0, 3).ToUpper();
                 user.Picture = user.Picture;
-                user.IsBanned = true;
+                user.IsBanned = false;
                 user.UserType = "User";
                 return services.AddNewUser(user);
             }

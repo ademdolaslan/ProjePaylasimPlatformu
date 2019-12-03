@@ -31,24 +31,41 @@
                     <li><a asp-action="Share" asp-controller="Project">Share Project</a></li>
                     <li><a asp-action="Index" asp-controller="About">About</a></li>
                     <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
-                    <li>@{
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            <a>@User.FindFirst(c=>c.Type==System.Security.Claims.ClaimTypes.Name)?.Value</a>
+                    <li>
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle">@User.Identity.Name</a>
+
+                                    <div class="dropdown-menu">
+                                        <a asp-action="MyProfile" asp-controller="User" class="dropdown-item pr-3"><span class="px-3"><img src="~/icons/svg/user.svg" width="20px;" /></span>My Profile</a>
+                                        <a asp-action="Logout" asp-controller="Account" class="dropdown-item pr-3"><span class="px-3"><img src="~/icons/svg/exit.svg" width="20px;" /></span>Sign Out</a>
+                                        @{
+                                            if (User.IsInRole("Admin"))
+                                            {
+                                                <a href="/Admin/Dashboard/Index"  class="dropdown-item pr-3"><span class="px-3"><img src="~/icons/svg/key.svg" width="20px;" /></span>Go To Admin Dashboard</a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Login" asp-controller="Account" style="display:inline-block;">Sign Up</a>
+                                <p style="display:inline-block;">or</p>
+                                <a asp-action="Register" asp-controller="Account" style="display:inline-block;">Register</a>
+
+                            }
                         }
-                        else
-                        {
-                            <a asp-action="Login" asp-controller="Account" style="display:inline-block;">Sign Up</a> 
-                            <p style="display:inline-block;">or</p> 
-                            <a asp-action="Register" asp-controller="Account" style="display:inline-block;">Register</a>
-                        }
-                    }</li>
+                    </li>
                 </ul>
             </nav>
             <div class="colorlib-footer">
                 <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image: url(images/bg_1.jpg);">Project <span>Share</span></a></h1>
                 <div class="mb-4">
-                    <h3>Have a project? Share us!</h3>                    
+                    <h3>Have a project? Share us!</h3>
                 </div>
                 <p class="pfooter">
                     <ul class="nav">
@@ -84,7 +101,7 @@
         <div id="colorlib-main">
             <section class="ftco-section ftco-no-pt ftco-no-pb">
                 <div class="container">
-                    <div class="row d-flex">                        
+                    <div class="row d-flex">
                         <div class="col-xl-8 py-5 px-md-5">@RenderBody()</div>
                         <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
                             <div class="sidebar-box pt-md-4">
@@ -97,13 +114,13 @@
                             </div>
                             <div class="sidebar-box ftco-animate">
                                 <h3 class="sidebar-heading">Categories</h3>
-                                <ul class="categories">                                 
-                                    <partial name="_Categories"/>
+                                <ul class="categories">
+                                    <partial name="_Categories" />
                                 </ul>
                             </div>
                             <div class="sidebar-box ftco-animate">
                                 <h3 class="sidebar-heading">Popular Articles</h3>
-                                <partial name="_Popular" />                                
+                                <partial name="_Popular" />
                             </div>
                             <div class="sidebar-box ftco-animate">
                                 <h3 class="sidebar-heading">Tag Cloud</h3>
@@ -117,7 +134,7 @@
                                     <a asp-action="Tag" asp-controller="Home" asp-route-id="API" class="tag-cloud-link">API</a>
                                     <a asp-action="Tag" asp-controller="Home" asp-route-id="WCF" class="tag-cloud-link">WCF</a>
                                 </ul>
-                            </div>                           
+                            </div>
                             <div class="sidebar-box ftco-animate">
                                 <h3 class="sidebar-heading">Archives</h3>
                                 <ul class="categories">
@@ -158,6 +175,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="~/js/google-map.js"></script>
     <script src="~/js/main.js"></script>
-    @RenderSection("Scripts",required:false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
