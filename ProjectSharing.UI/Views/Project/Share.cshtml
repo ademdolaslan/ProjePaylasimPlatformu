@@ -1,0 +1,42 @@
+﻿@model HtmlTextViewModel
+@{
+    ViewData["Title"] = "Share";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
+}
+<textarea id="editor1" name="editor1"></textarea>
+<form enctype="multipart/form-data" asp-action="SavePage" asp-controller="Project" method="post">
+    <input asp-for="HtmlText" type="hidden" />
+    <div class="row">
+        <div class="col-md-4 pt-5 mt-5">
+            <input type="submit" value="SAYFAYI YAYINLA" class="btn btn-default border-dark mt-4 mx-auto" />
+        </div>
+        <div class="col-md-8 pt-5 mt-5">
+            <div class="form-group">
+                <label class="control-label">Eğer birden fazla dosyanız var ise .rar dosyası olacak şekilde yükleyiniz.</label>
+                <div class="custom-file">
+                    <input asp-for="PageFiles" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Choose File</label>
+                </div>
+            </div>
+        </div>
+    </div>    
+</form>
+@section Scripts{
+    <script type="text/javascript">
+        CKEDITOR.replace('editor1');
+        timer = setInterval(updateDiv, 1000);
+        function updateDiv() {
+            var editorText = CKEDITOR.instances.editor1.getData();
+            $('#HtmlText').val(editorText);
+        }
+        $(document).ready(function () {
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next(".custom-file-label").html(fileName);
+            });
+        });
+    </script>
+}

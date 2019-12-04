@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="~/css/flaticon.css">
     <link rel="stylesheet" href="~/css/icomoon.css">
     <link rel="stylesheet" href="~/css/style.css">
+    @RenderSection("Styles",required:false)
 
 </head>
 <body>
@@ -44,7 +45,7 @@
                                         @{
                                             if (User.IsInRole("Admin"))
                                             {
-                                                <a href="/Admin/Dashboard/Index"  class="dropdown-item pr-3"><span class="px-3"><img src="~/icons/svg/key.svg" width="20px;" /></span>Go To Admin Dashboard</a>
+                                                <a href="/Admin/Dashboard/Index" class="dropdown-item pr-3"><span class="px-3"><img src="~/icons/svg/key.svg" width="20px;" /></span>Go To Admin Dashboard</a>
                                             }
                                         }
                                     </div>
@@ -63,7 +64,7 @@
                 </ul>
             </nav>
             <div class="colorlib-footer">
-                <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image: url(images/bg_1.jpg);">Project <span>Share</span></a></h1>
+                <h1 id="colorlib-logo" class="mb-4"><a asp-action="Index" asp-controller="Home" style="background-image:url(/images/bg_1.jpg)">Project <span>Share</span></a></h1>
                 <div class="mb-4">
                     <h3>Have a project? Share us!</h3>
                 </div>
@@ -100,10 +101,12 @@
         </aside>
         <div id="colorlib-main">
             <section class="ftco-section ftco-no-pt ftco-no-pb">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row d-flex">
-                        <div class="col-xl-8 py-5 px-md-5">@RenderBody()</div>
-                        <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+                        <div class="col-xl-9 py-5">
+                        @RenderBody()
+                        </div>
+                        <div class="col-xl-3 sidebar ftco-animate bg-light pt-5">
                             <div class="sidebar-box pt-md-4">
                                 <form action="#" class="search-form">
                                     <div class="form-group">
@@ -176,5 +179,6 @@
     <script src="~/js/google-map.js"></script>
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
+    @RenderSection("htlmEditorHead", required: false)
 </body>
 </html>
