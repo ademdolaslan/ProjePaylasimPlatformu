@@ -20,6 +20,11 @@ namespace ProjectSharing.DAL.Services
             var files = db.Files.Where(x => x.UserID == userId).ToList();
             return files;
         }
+        public List<File> GetPageFiles(int pageId)
+        {
+            var files = db.Files.Where(x => x.PageID == pageId).ToList();
+            return files;
+        }
         public int AddNewFile(File _file)
         {
             try
