@@ -24,9 +24,9 @@ namespace ProjectSharing.DAL.Services
         {
             try
             {
-                db.Pages.Add(_page);
+                db.Pages.Add(_page);                
                 var affectedRow = db.SaveChanges();
-                return affectedRow;
+                return _page.PageID;
             }
             catch (Exception)
             {
