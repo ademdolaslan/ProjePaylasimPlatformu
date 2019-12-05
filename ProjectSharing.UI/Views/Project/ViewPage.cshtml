@@ -1,0 +1,121 @@
+﻿@model PageInfoViewModel
+@{
+    ViewData["Title"] = "ViewPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row p-5 mb-5">
+    <h1>@Model.PageInfo.PageTitle</h1>
+</div>
+<div class="row px-5">
+    <div id="pageContent">
+
+    </div>
+    <input type="hidden" value="@Model.PageInfo.PageContent" id="hiddenContent" />
+</div>
+<div class="row">
+    <div class="tag-widget post-tag-container m-5">
+        <div class="tagcloud">
+            @{
+                var _tags = Model.PageInfo.PageTags.Split(',');
+                foreach (var tag in _tags)
+                {
+                    <a class="tag-cloud-link">@tag</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="row px-5 bg-light">
+    <div class="about-author d-flex p-4 bg-light w-100">
+        <div class="bio mr-5">
+            <img class="img img-2" width="150px" height="150px" alt="@Model.PageInfo.User.FirstName" src="@Url.Action("FileContent","Home",new { id=Model.PageInfo.User.UserID})" />
+        </div>
+        <div class="desc">
+            <h3>@Model.PageInfo.User.FirstName @Model.PageInfo.User.LastName</h3>
+            <p> @Model.PageInfo.User.Email</p>
+        </div>
+    </div>
+</div>
+<div class="row px-5 mt-5">
+    <h3 class="mb-5 font-weight-bold">@Model.PageComments.Count Comments</h3>
+</div>
+<div class="row px-5">
+    <ul class="comment-list">
+        @{
+            var _comments = Model.PageComments.Where(x => x.CommentParentID == null).ToList();
+            var _allsubcomments = Model.PageComments.Where(x => x.CommentParentID != null).ToList();
+            foreach (var _comment in _comments)
+            {
+                <li class="comment mb-0">
+                    <div class="vcard bio">
+                        <img width="50px" height="50px" src="@Url.Action("FileContent","Home",new { id=_comment.UserID})" alt="Comment Author @_comment.User.FirstName @_comment.User.LastName">
+                    </div>
+                    <div class="comment-body">
+                        <h2>@_comment.User.FirstName @_comment.User.LastName</h2>
+                        <div class="meta">@_comment.CommentTitle</div>
+                        <p>@_comment.CommentText</p>
+                        <p><a class="reply" data-toggle="collapse" href="#addSubComment@_comment.CommentID" aria-expanded="false" aria-controls="collapseExample">Reply</a></p>
+                    </div>                    
+                    <div id="addSubComment@_comment.CommentID" class="collapse mb-3">
+                        <div class="row pl-5 ml-5">
+                            <div class="comment-form-wrap w-100 py-2 maincomment">
+                                <div class="form-group" id="subCommentTitle">
+                                    <label>Comment Title</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                                <div class="form-group" id="subCommentText">
+                                    <label>Comment Text</label>
+                                    <textarea id="message" cols="30" rows="3" class="form-control"></textarea>
+                                </div>
+                                <input type="button" onclick="postSubComment(@_comment.PageID,@_comment.CommentID,this)" value="Post Comment" class="btn btn-default btn-sm border-dark">
+                            </div>
+                        </div>
+                    </div>
+                </li>                
+                var _subcomments = _allsubcomments.Where(x => x.CommentParentID == _comment.CommentID).ToList();
+                <li class="children pt-2">
+                    @{
+                        foreach (var _subcomment in _subcomments)
+                        {
+                            <div class="row comment ml-5">
+                                <div class="vcard bio">
+                                    <img width="50px" height="50px" src="@Url.Action("FileContent","Home",new { id=_subcomment.UserID})" alt="Comment Author @_subcomment.User.FirstName @_subcomment.User.LastName">
+                                </div>
+                                <div class="comment-body">
+                                    <h2>@_subcomment.User.FirstName @_subcomment.User.LastName</h2>
+                                    <div class="meta">@_subcomment.CommentTitle</div>
+                                    <p>@_subcomment.CommentText</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </li>
+            }
+
+        }
+    </ul>
+</div>
+<div class="row px-5 mx-5">
+    <div class="comment-form-wrap w-100 pt-5 maincomment">
+        <h3 class="mb-5">Leave a comment</h3>
+        <div class="form-group" id="subCommentTitle">
+            <label>Comment Title</label>
+            <input type="text" class="form-control" id="title">
+        </div>
+        <div class="form-group" id="subCommentText">
+            <label>Comment Text</label>
+            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+        <input type="button" onclick="postComment(@Model.PageInfo.PageID,this)" value="Post Comment" class="btn py-3 px-4 btn-primary">
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var _pageContent = $("#hiddenContent").val();
+            $("#hiddenContent").val("");
+            $("#pageContent").html(_pageContent);
+        });
+
+    </script>
+}

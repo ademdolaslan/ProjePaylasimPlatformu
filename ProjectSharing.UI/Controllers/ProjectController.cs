@@ -62,5 +62,23 @@ namespace ProjectSharing.UI.Controllers
             return RedirectToAction("Index", "Home");
 
         }
+
+        [AllowAnonymous]
+        public IActionResult ViewPage(string id)
+        {
+            var page = new PageBLL().GetSinglePage(id);
+            if (page==null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+            var pageFile = new FileBLL().GetFilesbyPageID(page.PageID);
+            var comments = new CommentBLL().GetAllComments(page.PageID);
+            var model = new PageInfoViewModel() { 
+            PageComments=comments,
+            PageFiles=pageFile,
+            PageInfo=page
+            };
+            return View(model);
+        }
     }
 }

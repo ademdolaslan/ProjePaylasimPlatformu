@@ -18,8 +18,6 @@ namespace ProjectSharing.DAL.Entities
         public int Rating { get; set; }
         public bool IsVerified { get; set; }
 
-        [ForeignKey("CommentParentID")]
-        public Comment ParentComment { get; set; }
 
         [ForeignKey("UserID")]
         public User User { get; set; }

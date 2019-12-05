@@ -1,4 +1,5 @@
-﻿using ProjectSharing.DAL.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectSharing.DAL.DataContext;
 using ProjectSharing.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace ProjectSharing.DAL.Services
         private readonly ProjectSharingDbContext db = new ProjectSharingDbContext(ProjectSharingDbContext.ops.dbOptions);
         public List<Comment> CommentsByPageID(int pageId)
         {
-            return db.Comments.Where(x => x.PageID == pageId&&x.CommentParentID==null).ToList();
+            return db.Comments.Include(x=>x.User).Where(x => x.PageID == pageId).ToList();
         }
         public List<Comment> SubCommentByCommentID(int commentId)
         {
-            return db.Comments.Where(x => x.CommentParentID == commentId).ToList();
+            return db.Comments.Include(x => x.User).Where(x => x.CommentParentID == commentId).ToList();
         }
         public int AddComment(Comment comment)
         {

@@ -13,7 +13,7 @@
             <div class="blog-entry ftco-animate d-md-flex">
                 <a asp-action="ViewUser" asp-controller="User" asp-route-id="@item.User.UserID" ><img class="img img-2" src="@Url.Action("FileContent","Home",new { id=item.User.UserID})" /></a>
                 <div class="text text-2 pl-md-4">
-                    <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.PageID">@item.PageTitle</a></h3>
+                    <h3 class="mb-2"><a asp-action="ViewPage" asp-controller="Project" asp-route-id="@item.PageUrl">@item.PageTitle</a></h3>
                     <div class="meta-wrap">
                         <p class="meta">
                             <span>@item.CreateDate.Date.ToShortDateString()</span>
@@ -22,7 +22,7 @@
                         </p>
                     </div>
                     <p class="mb-4">@item.PageDescription</p>
-                    <p><a asp-action="ViewPage" asp-controller="Page" asp-route-id="@item.PageID" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                    <p><a asp-action="ViewPage" asp-controller="Project" asp-route-id="@item.PageUrl" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
                 </div>
             </div>
         </div>
