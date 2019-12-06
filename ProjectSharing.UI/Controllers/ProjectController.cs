@@ -80,5 +80,16 @@ namespace ProjectSharing.UI.Controllers
             };
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult AddSubCommentToPage(SubCommentViewModel m)
+        {
+            return Json("dflnkdgnmş");
+        }
+        [HttpPost]
+        public IActionResult AddCommentToPage(CommentViewModel m)
+        {
+            return Json("dflnkdgnmş");
+        }
     }
 }
