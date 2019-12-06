@@ -96,8 +96,8 @@
                                 </div>
                             </div>
                         </form>
-                    </div>  
-                    
+                    </div>
+
                 </li>
                 var _subcomments = _allsubcomments.Where(x => x.CommentParentID == _comment.CommentID).ToList();
                 <li class="children pt-2">
@@ -150,27 +150,5 @@
             $("#hiddenContent").val("");
             $("#pageContent").html(_pageContent);
         });
-
-        function postSubComment(pageid, commentid, button) {
-            var mainDiv = $(button).parent();
-            var title = mainDiv.children("#subCommentTitle").children("#title").val();
-            var text = mainDiv.children("#subCommentText").children("#message").val();
-            var sendmodel = {
-                PageID: pageid,
-                ParentCommentID: commentid,
-                CommentTitle: title,
-                CommentText: text
-            };
-
-            $.ajax({
-                type: "POST",
-                data: JSON.stringify(sendmodel),
-                url: @Url.Action("AddSubCommentToPage", "Project"),
-                contentType: "application/json;charset=utf-8;"
-            })
-        };
-        function postComment(pageid, button) {
-
-        };
     </script>
 }
