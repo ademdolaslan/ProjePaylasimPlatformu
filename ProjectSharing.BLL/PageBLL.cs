@@ -77,5 +77,10 @@ namespace ProjectSharing.BLL
                 return service.DeletePage(deletedPage.PageID);
             }
         }                
+        public string GetUrlByID(int id)
+        {
+            var pages = GetAllPages();
+            return pages.FirstOrDefault(x => x.PageID == id).PageUrl;
+        }
     }
 }

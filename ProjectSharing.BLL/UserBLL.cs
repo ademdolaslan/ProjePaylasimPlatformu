@@ -8,6 +8,8 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 
 
+
+
 namespace ProjectSharing.BLL
 {
     public class UserBLL
@@ -78,6 +80,13 @@ namespace ProjectSharing.BLL
             Image returnImage = Image.FromStream(ms);
             return returnImage;
         }
-
+        public string Encode(string s)
+        {
+            return System.Net.WebUtility.UrlEncode(s);
+        }
+        public string Decode(string s)
+        {
+            return System.Net.WebUtility.UrlDecode(s);
+        }
     }
 }

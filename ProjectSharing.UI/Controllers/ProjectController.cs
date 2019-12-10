@@ -82,14 +82,78 @@ namespace ProjectSharing.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSubCommentToPage(SubCommentViewModel m)
+        public RedirectToActionResult AddSubCommentToPage(SubCommentViewModel m)
         {
-            return Json("dflnkdgnmş");
+            var url = new PageBLL().GetUrlByID(m.PageID);
+            var userEmail = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+            var loggedUser = new UserBLL().GetUser(userEmail);
+            var result = new CommentBLL().AddSubComment(m.PageID, m.ParentCommentID, m.CommentTitle, m.CommentText, loggedUser.UserID);
+            if (result == -1)
+            {
+                TempData["StatusMessage"] = "Yorum Eklenirken Bir Hata Oluştu.";
+                TempData["StatusColor"] = "alert-danger";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+            }
+            else if (result == 0)
+            {
+
+                TempData["StatusMessage"] = "Yorum Eklenemedi.";
+                TempData["StatusColor"] = "alert-warning";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //yorum eklenemedi
+            }
+            else if (result == 1)
+            {
+
+                TempData["StatusMessage"] = "Yorum Eklendi.";
+                TempData["StatusColor"] = "alert-success";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //yorum eklendi
+            }
+            else
+            {
+                TempData["StatusMessage"] = "Yorum Eklenirken Bir Hata Oluştu";
+                TempData["StatusColor"] = "alert-danger";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //bilinmeyen bir hata
+            }
         }
         [HttpPost]
-        public IActionResult AddCommentToPage(CommentViewModel m)
+        public RedirectToActionResult AddCommentToPage(CommentViewModel m)
         {
-            return Json("dflnkdgnmş");
+            var url = new PageBLL().GetUrlByID(m.PageID);
+            var userEmail = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+            var loggedUser = new UserBLL().GetUser(userEmail);
+            var result = new CommentBLL().AddComment(m.PageID, m.CommentTitle, m.CommentText, loggedUser.UserID);
+            if (result == -1)
+            {
+                TempData["StatusMessage"] = "Yorum Eklenirken Bir Hata Oluştu.";
+                TempData["StatusColor"] = "alert-danger";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+            }
+            else if (result == 0)
+            {
+
+                TempData["StatusMessage"] = "Yorum Eklenemedi.";
+                TempData["StatusColor"] = "alert-warning";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //yorum eklenemedi
+            }
+            else if (result == 1)
+            {
+
+                TempData["StatusMessage"] = "Yorum Eklendi.";
+                TempData["StatusColor"] = "alert-success";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //yorum eklendi
+            }
+            else
+            {
+                TempData["StatusMessage"] = "Yorum Eklenirken Bir Hata Oluştu";
+                TempData["StatusColor"] = "alert-danger";
+                return RedirectToAction("ViewPage", "Project", new { id = url });
+                //bilinmeyen bir hata
+            }
         }
     }
 }

@@ -30,8 +30,8 @@
                 <ul>
                     <li class="colorlib-active"><a asp-action="Index" asp-controller="Home">Home</a></li>
                     <li><a asp-action="Share" asp-controller="Project">Share Project</a></li>
-                    <li><a asp-action="Index" asp-controller="About">About</a></li>
-                    <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
+                    <li><a asp-action="About" asp-controller="Home">About</a></li>
+                    <li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
                     <li>
                         @{
                             if (User.Identity.IsAuthenticated)
@@ -106,7 +106,7 @@
                         <div class="col-xl-9 py-5">
                         @RenderBody()
                         </div>
-                        <div class="col-xl-3 sidebar ftco-animate bg-light pt-5">
+                        <div class="col-xl-3 sidebar ftco-animate bg-light pt-5" id="sidebarright">
                             <div class="sidebar-box pt-md-4">
                                 <form action="#" class="search-form">
                                     <div class="form-group">

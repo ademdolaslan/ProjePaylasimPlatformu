@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row d-flex">
+    <div class="col-md-6 d-flex">
+        <div class="img d-flex align-self-stretch align-items-center js-fullheight">
+            <img src="~/images/pp.jpg" />
+        </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+        <div class="text px-4 pt-5 pt-md-0 px-md-4 pr-md-5 ftco-animate">
+            <h2 class="mb-4">I'm <span>Adem DÖLASLAN</span> a Turkish Computer Engineer &amp; Software Developer</h2>
+            <strong>
+                <p class="text-body">Bilecik Şeyh Edebali Üniversitesi Bilgisayar Mühendisliği bölümünden mezun, yazılım geliştirmede istekli, takım çalışmasına adapte olabilenKarşılaştığı sorunları çözmede azimli, yeni teknolojileri öğrenmede istekli, kendine yeni bilgiler katmayı seven bilgisayar mühendisi. Yazılım Geliştirici (ASP.Net, ASP.Net MVC, .Net Core), Veritabanı Programcısı (MSSql, MySql , Oracle - PL/SQL).</p>
+
+            </strong>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#sidebarright").hide();
+        });
+    </script>
+}

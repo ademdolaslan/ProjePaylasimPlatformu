@@ -42,5 +42,14 @@ namespace ProjectSharing.UI.Controllers
                 return new FileContentResult(user.Picture, "image/png");
             }            
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }
